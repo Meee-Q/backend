@@ -1,7 +1,10 @@
 package meQ.backend.controller;
 
 import lombok.RequiredArgsConstructor;
+import meQ.backend.domain.dto.MembersLoginRequestDto;
+import meQ.backend.domain.dto.MembersResponseDto;
 import meQ.backend.domain.dto.MembersSaveRequestDto;
+import meQ.backend.domain.entity.Members;
 import meQ.backend.service.MembersService;
 import meQ.backend.utils.Constant;
 import meQ.backend.utils.ResponseApiMessage;
@@ -18,6 +21,18 @@ public class MembersController extends BaseController {
         String membersId = membersService.save(requestDto);
 
         return sendResponseHttpByJson(Constant.SUCCESS_CODE, "members is saved", membersId);
+    }
+
+    @PostMapping("/api/v1/members/login")
+    public ResponseEntity<ResponseApiMessage> login(@RequestBody MembersLoginRequestDto requestDto) {
+        MembersResponseDto responseDto = membersService.login(requestDto);
+
+        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "login success", responseDto);
+    }
+
+    @GetMapping("/api/v1/members/{membersKey}")
+    public ResponseEntity<ResponseApiMessage> findByMembersKey(@PathVariable Long membersKey) {
+        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "members is loaded", membersService.getMembers(membersKey));
     }
 
     @GetMapping("/api/v1/members/duplicate/{membersId}")
