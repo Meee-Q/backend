@@ -5,8 +5,8 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
-src/main/resources/*.properties
-src/main/java/meQ/backend/config
+#src/main/resources/*.properties
+#src/main/java/meQ/backend/config
 
 ### STS ###
 .apt_generated
