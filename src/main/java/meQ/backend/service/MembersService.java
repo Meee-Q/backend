@@ -1,9 +1,9 @@
 package meQ.backend.service;
 
 import lombok.RequiredArgsConstructor;
-import meQ.backend.domain.dto.MembersLoginRequestDto;
-import meQ.backend.domain.dto.MembersResponseDto;
-import meQ.backend.domain.dto.MembersSaveRequestDto;
+import meQ.backend.domain.dto.members.MembersLoginRequestDto;
+import meQ.backend.domain.dto.members.MembersResponseDto;
+import meQ.backend.domain.dto.members.MembersSaveRequestDto;
 import meQ.backend.domain.entity.Members;
 import meQ.backend.exception.LoginFailException;
 import meQ.backend.repository.MembersRepository;

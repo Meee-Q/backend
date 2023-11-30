@@ -1,4 +1,4 @@
-package meQ.backend.domain.dto;
+package meQ.backend.domain.dto.members;
 
 import lombok.Getter;
 

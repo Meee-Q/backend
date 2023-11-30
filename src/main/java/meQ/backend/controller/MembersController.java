@@ -1,10 +1,9 @@
 package meQ.backend.controller;
 
 import lombok.RequiredArgsConstructor;
-import meQ.backend.domain.dto.MembersLoginRequestDto;
-import meQ.backend.domain.dto.MembersResponseDto;
-import meQ.backend.domain.dto.MembersSaveRequestDto;
-import meQ.backend.domain.entity.Members;
+import meQ.backend.domain.dto.members.MembersLoginRequestDto;
+import meQ.backend.domain.dto.members.MembersResponseDto;
+import meQ.backend.domain.dto.members.MembersSaveRequestDto;
 import meQ.backend.service.MembersService;
 import meQ.backend.utils.Constant;
 import meQ.backend.utils.ResponseApiMessage;
