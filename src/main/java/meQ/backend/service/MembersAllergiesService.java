@@ -33,11 +33,22 @@ public class MembersAllergiesService {
 
         for (String allergiesId : requestDto.getAllergiesIds()) {
             Allergies allergies = findAllergies(Long.parseLong(allergiesId));
-            membersAllergiesRepository.save(MembersAllergies.createMembersAllergies(members, allergies));
+            MembersAllergies membersAllergies = membersAllergiesRepository.save(MembersAllergies.createMembersAllergies(members, allergies));
+            members.addAllergies(membersAllergies);
         }
 
         return new MembersAllergiesResponseDto(requestDto.getMembersKey(), requestDto.getAllergiesIds());
     }
 
-//    public void update()
+    public MembersAllergiesResponseDto update(MembersAllergiesSaveRequestDto requestDto) {
+        Members members = findMembers(requestDto.getMembersKey());
+
+        // 기존 알레르기 정보 삭제
+        members.deleteAllAllergies();
+
+        // 변경 데이터 저장
+        membersRepository.save(members);
+
+        return save(requestDto);
+    }
 }

@@ -6,6 +6,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import meQ.backend.domain.dto.members.MembersSaveRequestDto;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @NoArgsConstructor
 @Getter
 @Entity
@@ -30,6 +33,9 @@ public class Members {
     @Column
     private String birth;
 
+    @OneToMany(mappedBy = "members", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MembersAllergies> allergies = new ArrayList<>();
+
     @Builder
     public Members(String membersId, String name, String password, String sex, String birth) {
         this.membersId = membersId;
@@ -41,5 +47,15 @@ public class Members {
 
     public static Members createMembers(MembersSaveRequestDto requestDto, String password) {
         return new Members(requestDto.getMembersId(), requestDto.getName(), password, requestDto.getSex(), requestDto.getBirth());
+    }
+
+    public void addAllergies(MembersAllergies membersAllergies) {
+        this.allergies.add(membersAllergies);
+    }
+
+    public void deleteAllAllergies() {
+        if (this.getAllergies() != null) {
+            allergies.clear();
+        }
     }
 }

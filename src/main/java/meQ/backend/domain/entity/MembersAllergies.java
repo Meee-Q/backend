@@ -14,7 +14,8 @@ public class MembersAllergies {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long membersAllergiesId;
 
-    @OneToOne
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "membersKey")
     private Members members;
 
     @OneToOne
