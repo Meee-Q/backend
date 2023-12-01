@@ -1,6 +1,7 @@
 package meQ.backend.service;
 
 import lombok.RequiredArgsConstructor;
+import meQ.backend.domain.dto.membersAllergies.MembersAllergiesResponseDto;
 import meQ.backend.domain.dto.membersAllergies.MembersAllergiesSaveRequestDto;
 import meQ.backend.domain.entity.Allergies;
 import meQ.backend.domain.entity.Members;
@@ -27,12 +28,16 @@ public class MembersAllergiesService {
                 .orElseThrow(() -> new IllegalArgumentException("there is no [" + allergiesId + "] allergies"));
     }
 
-    public void save(MembersAllergiesSaveRequestDto requestDto) {
+    public MembersAllergiesResponseDto save(MembersAllergiesSaveRequestDto requestDto) {
         Members members = findMembers(requestDto.getMembersKey());
 
         for (String allergiesId : requestDto.getAllergiesIds()) {
             Allergies allergies = findAllergies(Long.parseLong(allergiesId));
             membersAllergiesRepository.save(MembersAllergies.createMembersAllergies(members, allergies));
         }
+
+        return new MembersAllergiesResponseDto(requestDto.getMembersKey(), requestDto.getAllergiesIds());
     }
+
+//    public void update()
 }

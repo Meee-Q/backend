@@ -26,7 +26,6 @@ public class MembersAllergiesController extends BaseController {
 
     @PostMapping("/api/v1/members-allergies")
     public ResponseEntity<ResponseApiMessage> save(@RequestBody MembersAllergiesSaveRequestDto requestDto) {
-        membersAllergiesService.save(requestDto);
-        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "save members allergies information", null);
+        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "save members allergies information", membersAllergiesService.save(requestDto));
     }
 }
