@@ -11,6 +11,9 @@ import meQ.backend.repository.MembersAllergiesRepository;
 import meQ.backend.repository.MembersRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @RequiredArgsConstructor
 @Service
 public class MembersAllergiesService {
@@ -26,6 +29,17 @@ public class MembersAllergiesService {
     private Allergies findAllergies(Long allergiesId) {
         return allergiesRepository.findById(allergiesId)
                 .orElseThrow(() -> new IllegalArgumentException("there is no [" + allergiesId + "] allergies"));
+    }
+
+    public MembersAllergiesResponseDto findById(Long membersKey) {
+        List<String> allergiesIds = new ArrayList<>();
+        Members members = findMembers(membersKey);
+
+        for (MembersAllergies membersAllergies : members.getAllergies()) {
+            allergiesIds.add(String.valueOf(membersAllergies.getAllergies().getAllergiesId()));
+        }
+
+        return new MembersAllergiesResponseDto(membersKey, allergiesIds);
     }
 
     public MembersAllergiesResponseDto save(MembersAllergiesSaveRequestDto requestDto) {
