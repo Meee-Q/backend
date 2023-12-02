@@ -36,6 +36,9 @@ public class Members {
     @OneToMany(mappedBy = "members", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MembersAllergies> allergies = new ArrayList<>();
 
+    @OneToMany(mappedBy = "members", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<MembersFoods> foods = new ArrayList<>();
+
     @Builder
     public Members(String membersId, String name, String password, String sex, String birth) {
         this.membersId = membersId;
@@ -57,5 +60,9 @@ public class Members {
         if (this.getAllergies() != null) {
             allergies.clear();
         }
+    }
+
+    public void addFoods(MembersFoods membersFoods) {
+        this.foods.add(membersFoods);
     }
 }
