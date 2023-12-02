@@ -16,10 +16,10 @@ public class MembersAllergiesController extends BaseController {
     private final AllergiesService allergiesService;
     private final MembersAllergiesService membersAllergiesService;
 
-    @PostMapping("/api/v1/setting")
+    @PostMapping("/api/v1/allergies-setting")
     public ResponseEntity<ResponseApiMessage> setting() {
         allergiesService.setting();
-        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "setting success", null);
+        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "allergies setting succeed", null);
     }
 
     @PostMapping("/api/v1/members-allergies")
