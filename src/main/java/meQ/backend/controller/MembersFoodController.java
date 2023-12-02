@@ -26,4 +26,9 @@ public class MembersFoodController extends BaseController{
     public ResponseEntity<ResponseApiMessage> save(@RequestBody MembersFoodsSaveRequestDto requestDto) {
         return sendResponseHttpByJson(Constant.SUCCESS_CODE, "save members foods information", membersFoodsService.save(requestDto));
     }
+
+    @GetMapping("/api/v1/members-foods/{membersKey}")
+    public ResponseEntity<ResponseApiMessage> findById(@PathVariable Long membersKey) {
+        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "get members foods information", membersFoodsService.findById(membersKey));
+    }
 }

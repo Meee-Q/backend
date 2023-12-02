@@ -34,6 +34,17 @@ public class MembersFoodsService {
                 .orElseThrow(() -> new IllegalArgumentException("there is no [" + foodsId + "] foods"));
     }
 
+    public MembersFoodsResponseDto findById(Long membersKey) {
+        List<String> foodsIds = new ArrayList<>();
+        Members members = findMembers(membersKey);
+
+        for (MembersFoods membersFoods : members.getFoods()) {
+            foodsIds.add(String.valueOf(membersFoods.getFoods().getFoodsId()));
+        }
+
+        return new MembersFoodsResponseDto(membersKey, foodsIds);
+    }
+
     public MembersFoodsResponseDto save(MembersFoodsSaveRequestDto requestDto) {
         Members members = findMembers(requestDto.getMembersKey());
 
