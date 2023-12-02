@@ -56,4 +56,10 @@ public class MembersFoodsService {
 
         return new MembersFoodsResponseDto(requestDto.getMembersKey(), requestDto.getFoodsIds());
     }
+
+    public MembersFoodsResponseDto update(MembersFoodsSaveRequestDto requestDto) {
+        Members members = findMembers(requestDto.getMembersKey());
+        members.deleteAllFoods();
+        return save(requestDto);
+    }
 }

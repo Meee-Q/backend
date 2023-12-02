@@ -65,4 +65,10 @@ public class Members {
     public void addFoods(MembersFoods membersFoods) {
         this.foods.add(membersFoods);
     }
+
+    public void deleteAllFoods() {
+        if (this.getFoods() != null) {
+            foods.clear();
+        }
+    }
 }

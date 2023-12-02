@@ -31,4 +31,9 @@ public class MembersFoodController extends BaseController{
     public ResponseEntity<ResponseApiMessage> findById(@PathVariable Long membersKey) {
         return sendResponseHttpByJson(Constant.SUCCESS_CODE, "get members foods information", membersFoodsService.findById(membersKey));
     }
+
+    @PutMapping("/api/v1/members-foods")
+    public ResponseEntity<ResponseApiMessage> update(@RequestBody MembersFoodsSaveRequestDto requestDto) {
+        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "update members foods information", membersFoodsService.update(requestDto));
+    }
 }
