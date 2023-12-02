@@ -36,4 +36,9 @@ public class MembersAllergiesController extends BaseController {
     public ResponseEntity<ResponseApiMessage> findById(@PathVariable Long membersKey) {
         return sendResponseHttpByJson(Constant.SUCCESS_CODE, "get members allergies information", membersAllergiesService.findById(membersKey));
     }
+
+    @GetMapping("/api/v1/allergies-info/{membersKey}")
+    public ResponseEntity<ResponseApiMessage> getMyAllergies(@PathVariable Long membersKey) {
+        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "get members allergies information", membersAllergiesService.findById(membersKey));
+    }
 }
