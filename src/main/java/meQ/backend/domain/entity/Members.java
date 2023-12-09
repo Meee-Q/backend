@@ -39,6 +39,9 @@ public class Members {
     @OneToMany(mappedBy = "members", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<MembersFoods> foods = new ArrayList<>();
 
+    @OneToMany(mappedBy = "members", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Likes> likes = new ArrayList<>();
+
     @Builder
     public Members(String membersId, String name, String password, String sex, String birth) {
         this.membersId = membersId;
@@ -70,5 +73,13 @@ public class Members {
         if (this.getFoods() != null) {
             foods.clear();
         }
+    }
+
+    public void addLikes(Likes likes) {
+        this.likes.add(likes);
+    }
+
+    public void removeLikes(Likes likes) {
+        this.likes.remove(likes);
     }
 }
