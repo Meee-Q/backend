@@ -29,6 +29,6 @@ public class LikesController extends BaseController{
 
     @GetMapping("/api/v1/likes/{membersKey}")
     public ResponseEntity<ResponseApiMessage> getLikes(@PathVariable Long membersKey) {
-        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "likes load with membersKey" + membersKey, likesService.getLikes(membersKey));
+        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "likes load with membersKey = " + membersKey, likesService.getLikes(membersKey));
     }
 }
