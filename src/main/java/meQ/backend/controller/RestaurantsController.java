@@ -6,6 +6,7 @@ import meQ.backend.utils.Constant;
 import meQ.backend.utils.ResponseApiMessage;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
 @RequiredArgsConstructor
@@ -15,8 +16,13 @@ public class RestaurantsController extends BaseController {
     private final RestaurantsService restaurantsService;
 
     @GetMapping("/api/v1/restaurants-setting")
-    public ResponseEntity<ResponseApiMessage> test() throws Exception {
+    public ResponseEntity<ResponseApiMessage> saveRestaurants() throws Exception {
         restaurantsService.saveRestaurants();
         return sendResponseHttpByJson(Constant.SUCCESS_CODE, "restaurants setting succeed", null);
+    }
+
+    @GetMapping("/api/v2/restaurants/{membersKey}")
+    public ResponseEntity<ResponseApiMessage> getRestaurants(@PathVariable Long membersKey) {
+        return sendResponseHttpByJson(Constant.SUCCESS_CODE, "restaurants load with membersKey = " + membersKey, restaurantsService.getRestaurants(membersKey));
     }
 }

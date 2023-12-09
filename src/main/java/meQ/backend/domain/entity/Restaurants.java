@@ -38,7 +38,7 @@ public class Restaurants {
     @Column
     private String category;
 
-    @OneToMany(mappedBy = "menusId", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "restaurants", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Menus> menus = new ArrayList<>();
 
     @Builder
@@ -54,6 +54,10 @@ public class Restaurants {
 
     public static Restaurants createRestaurants(String restaurantsName, String address, String longitude, String latitude, String number, String url, String category) {
         return new Restaurants(restaurantsName, address, longitude, latitude, number, url, category);
+    }
+
+    public void addMenus(Menus menus) {
+        this.menus.add((menus));
     }
 
 }
